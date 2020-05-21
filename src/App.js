@@ -7,24 +7,48 @@ import Home from "./Home.js"
 import NoMatch from "./NoMatch.js"
 import ProtectedRoute from "./ProtectedRoute.js";
 import NavBar from "./NavBar.js";
+import SideBar from "./SideBar.js";
 
 class App extends Component {
-  state = {
-    token: null
-  };
+  constructor(){
+    super();
+    this.state={
+      token: localStorage.getItem("token") || "",
+      sbtoggle: false,
+    }
+  }
+  sidebar = () => {
+      console.log("opened sidebar");
+      this.setState({sbtoggle:true});
+      console.log(this.state.sbtoggle);
+  }
+  sbclose= () => {
+      console.log("closed sidebar");
+      this.setState({sbtoggle:false});
+  }
+  signin = (email, password) => {
+    this.setState({token:'tokensignin'});
+    console.log(email + " " + password);
+    localStorage.setItem("token", "tokensignin");
+    console.log(localStorage.getItem("token")+" Retrieved")
+  }
+  signup = (email, password) => {
+    this.setState({token:'hari'});
+    console.log(email + " " + password);
+    console.log(this.state.token);
+    localStorage.setItem("token", "tokensignup");
+  }
+  signout = () => {
+    console.log(this.state.token);
+    this.setState({token:''});
+    localStorage.setItem("token", "");
+  }
 
-  signin = () => {
-    this.setState({token:'hari'});
-    console.log(this.state.token);
-  }
-  signup = () => {
-    this.setState({token:'hari'});
-    console.log(this.state.token);
-  }
   render() {
     return (
       <Router>
-      <NavBar />
+      <NavBar signout={this.signout} token={this.state.token} sidebar={this.sidebar}/>
+      <SideBar sbclose={this.sbclose} sbtoggle={this.state.sbtoggle}/>
       <Switch>
       <Route exact path="/signin" render=  { (props) => (
         <Fragment>
