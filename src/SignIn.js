@@ -16,11 +16,11 @@ class SignIn extends Component {
     };
     handleEmail = e => {
       e.preventDefault();
-      this.setState(this.state.email,e.target.value);
+      this.setState({email:e.target.value});
     }
     handlePwd = e => {
       e.preventDefault();
-      this.setState(this.state.password,e.target.value);
+      this.setState({password:e.target.value});
     }
 
   render() {

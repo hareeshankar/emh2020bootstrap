@@ -39,16 +39,18 @@ class App extends Component {
     localStorage.setItem("token", "tokensignup");
   }
   signout = () => {
-    console.log(this.state.token);
-    this.setState({token:''});
-    localStorage.setItem("token", "");
+    console.log("clicked sign out");
+      this.setState({sbtoggle:false, token:""});
   }
-
+  addEvent = () => {
+    console.log("Clicked Add Event");
+      this.setState({sbtoggle:false});
+  }
   render() {
     return (
       <Router>
       <NavBar signout={this.signout} token={this.state.token} sidebar={this.sidebar}/>
-      <SideBar sbclose={this.sbclose} sbtoggle={this.state.sbtoggle}/>
+      <SideBar signout={this.signout} addEvent={this.addEvent} sbclose={this.sbclose} sbtoggle={this.state.sbtoggle}/>
       <Switch>
       <Route exact path="/signin" render=  { (props) => (
         <Fragment>
