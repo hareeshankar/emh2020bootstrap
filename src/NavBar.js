@@ -9,7 +9,7 @@ export default function Nav({ token, sidebar}) {
   return (
     <div style={{ marginBottom: "10px" }}>
       <Navbar bg="dark" variant="dark">
-      { token ? (<Button variant="outline-light" style={{ marginRight: "10px" }} onClick={sidebar}>
+      { token ? (<Button variant="outline-light" onClick={sidebar}>
       <FontAwesomeIcon icon={faBars}  />
       </Button>):(null)}
         <Navbar.Brand href="#home">
